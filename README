@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+Library:      Generics
+Author:       Radoslaw Biernacki <radoslaw.biernacki@gmail.com>
+License:      BSD Revised
+
+---------------------------------------------------------------------------
+
+Generics is set of usefull macros and algorithms usefull for programing.
+They are focused on simplicity and easy usage.
+
+---------------------------------------------------------------------------
+
+DOCUMENTATION:
+
+All documentation is contained within the source files.
+
+---------------------------------------------------------------------------
+
