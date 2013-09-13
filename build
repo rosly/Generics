@@ -1,0 +1,3 @@
+gcc -Wall -Wextra -o test_circfifo circfifo.c test_circfifo.c -lcunit
+./test_circfifo
+
