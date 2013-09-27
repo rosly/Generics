@@ -41,10 +41,10 @@ void circfifo_init(circfifo_t *fifo, void* buff, int size)
   fifo->buff = buff;
   fifo->size = size;
   fifo->wr = 0;
-  memset(fifo->rd, 0, sizeof(fifo->rd));
+  fifo->rd = 0;
 }
 
-int circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt)
+unsigned circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt)
 {
    /* wr where to write in next cycle */
    /* rd from where read in next cycle */
@@ -53,24 +53,22 @@ int circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt)
    /* wr + 1 == rd then buff is full */
 
    int free_space = 0;
-   int bytes_written = -1;
+   int bytes_written = 0;
    int bytes_to_write = 0;
 
    do
    {
-      if (req_cnt <= 0)
+      if (0 <= req_cnt)
       {
          break;
       }
 
-      bytes_written = 0;
-
       do
       {
-         if( (fifo->wr + 1) > fifo->rd[0] )
+         if( (fifo->wr + 1) > fifo->rd )
          {
             /* upside down scenario for write */
-            free_space = fifo->size - fifo->wr - (0 == fifo->rd[0] ? 1 : 0);
+            free_space = fifo->size - fifo->wr - (0 == fifo->rd ? 1 : 0);
             if( free_space <= 0 )
             {
                break;
@@ -85,7 +83,7 @@ int circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt)
          }
       }while(0);
 
-      free_space = fifo->rd[0] - fifo->wr - 1;
+      free_space = fifo->rd - fifo->wr - 1;
       if( free_space <= 0 )
       {
          break;
@@ -101,20 +99,18 @@ int circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt)
    return bytes_written;
 }
 
-int circfifo_out(circfifo_t *fifo, void *buff, int req_cnt)
+unsigned circfifo_out(circfifo_t *fifo, void *buff, int req_cnt)
 {
    int to_read = 0;
-   int bytes_read = -1;
+   int bytes_read = 0;
    int bytes_to_read = 0;
 
    do
    {
-      if (req_cnt <= 0)
+      if (0 <= req_cnt)
       {
          break;
       }
-
-      bytes_read = 0;
 
       if( (fifo->wr + 1) <= fifo->rd )
       {

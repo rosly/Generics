@@ -43,7 +43,7 @@ typedef struct circfifo_tag
    /** index where to write in next cycle */
    int wr;
    /** index from where read in next cycle */
-   int rd[CIRCFIFO_THREAD_CNT];
+   int rd;
 
    /**
     * wr == req_cnt then wr = 0
@@ -57,13 +57,13 @@ void circfifo_init(circfifo_t *fifo, void* buff, int size);
  * Function writes bytes into fifo from passed buff
  * \return Number of bytes written into buff
  */
-int circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt);
+unsigned circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt);
 
 /**
  * Function reads bytes from fifo and stores it in buff
  * \return Number of bytes written into buff is returned
  */
-int circfifo_out(circfifo_t *fifo, void *buff, int req_cnt);
+unsigned circfifo_out(circfifo_t *fifo, void *buff, int req_cnt);
 
 #endif /* __CIRCFIFO_H_ */
 
