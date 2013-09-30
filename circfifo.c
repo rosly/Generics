@@ -58,10 +58,7 @@ unsigned circfifo_in(circfifo_t *fifo, const void *buff, int req_cnt)
 
    do
    {
-      if (req_cnt <= 0)
-      {
-         break;
-      }
+      assert(req_cnt > 0);
 
       do
       {
@@ -107,10 +104,7 @@ unsigned circfifo_out(circfifo_t *fifo, void *buff, int req_cnt)
 
    do
    {
-      if (req_cnt <= 0)
-      {
-         break; 
-      }
+      assert(req_cnt > 0);
 
       if( (fifo->wr + 1) <= fifo->rd )
       {
