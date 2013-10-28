@@ -1,0 +1,3 @@
+ARCHSOURCES = \
+	arch.c
+

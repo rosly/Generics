@@ -32,7 +32,7 @@
 #ifndef __CIRCFIFO_H_
 #define __CIRCFIFO_H_ 1
 
-#include <stdint.h> /* for uint8_t */
+#include "arch.h"
 
 typedef struct circfifo_tag
 {

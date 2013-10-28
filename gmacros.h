@@ -91,7 +91,6 @@
     const typeof( ((_type *)0)->_member ) *_mptr = (_ptr); \
     (_type *)( (char *)_mptr - offsetof(_type,_member) );})
 
-
 /**
    Common min macro with strict type-checking,
    returns the smaller value from two operands

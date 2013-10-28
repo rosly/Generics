@@ -29,12 +29,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __CRC_H_
-#define __CRC_H_ 1
+#ifndef __ARCH_H_
+#define __ARCH_H_ 1
 
-#include "arch.h"
+#include <stdint.h> /* for uint8_t */
+#include <assert.h> /* for assert */
+#include <string.h> /* for memcpy */
 
-uint16_t crc16_update(uint16_t crc, const void* buff, unsigned size);
+void __attribute__ ((noreturn)) abort(void);
 
-#endif /* __CRC_H_ */
+#endif
 

@@ -29,9 +29,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <assert.h> /* for assert */
-#include <string.h> /* for memcpy */
-
 #include "circfifo.h"
 
 void circfifo_init(circfifo_t *fifo, void* buff, int size)

@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "arch.h"
+
 #include <cunit/CUnit.h> /*Required by CUnit functions*/
 #include <cunit/Basic.h> /*The results of the Unit Tests are printed to the standard output*/
 #include <cunit/TestDB.h> /*This library supports the structure of tests and suites in CUnit*/

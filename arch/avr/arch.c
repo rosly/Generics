@@ -29,12 +29,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __CRC_H_
-#define __CRC_H_ 1
-
 #include "arch.h"
 
-uint16_t crc16_update(uint16_t crc, const void* buff, unsigned size);
-
-#endif /* __CRC_H_ */
+void __attribute__ ((noreturn)) abort(void)
+{
+  while(1); /* spin until end of time */
+}
 

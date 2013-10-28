@@ -24,5 +24,3 @@ endif
 CFLAGS   += -std=gnu99 
 LDFLAGS  =
 
-ARCHSOURCES =
-

@@ -34,13 +34,20 @@ ECHO = /bin/echo -e
 ifeq ($(ARCH),)
 $(error ARCH is not defined, check your enviroment ARCH variable)
 endif
-#each architecture have its own target.mk file where CC, ARCHSOURCES, CFLAGS
-#variables are defined
+#each architecture have its own target.mk file where CC, CFLAGS variables are defined
+#we include this file only if those variables whre not yet set
+ifeq ($(TARGET),)
 include arch/$(ARCH)/target.mk
+#mark that target was set
+export TARGET = 1
+endif
+#ARCHSOURCES are defined separately
+include arch/$(ARCH)/source.mk
 
 SOURCEDIR = .
 BUILDDIR = build/$(ARCH)
-INCLUDEDIR = . arch/$(ARCH)
+ARCHDIR = arch/$(ARCH)
+INCLUDEDIR = $(ARCHDIR) $(SOURCEDIR)
 SOURCES = \
 	circfifo.c \
 	crc.c \
@@ -55,7 +62,7 @@ endif
 CFLAGS += -Wall -Wextra -Werror
 LDFLAGS +=
 
-vpath %.c $(SOURCEDIR) arch/$(ARCH)
+vpath %.c $(SOURCEDIR) $(ARCHDIR)
 vpath %.o $(BUILDDIR)
 vpath %.elf $(BUILDDIR)
 DEPEND = $(addprefix $(BUILDDIR)/, $(SOURCES:.c=.d))
