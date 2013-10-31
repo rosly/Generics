@@ -37,7 +37,7 @@ CP       = cp -p
 RM       = rm -f
 MV       = mv
 
-CFLAGS   = -mmcu=$(MCU_OPSET) -D__AVR_$(MCU_TYPE)__ # -std=gnu99 commented out cause __flash extension
+CFLAGS   = -mmcu=$(MCU_OPSET) -D__AVR_$(MCU_TYPE)__ -ffunction-sections -fdata-sections # -std=gnu99 commented out cause __flash extension
 ifeq ($(DEBUG),)
 CFLAGS   += -Os
 else
